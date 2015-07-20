@@ -77,7 +77,7 @@ class EventLoop {
             untyped __js__("(typeof setImmediate === 'function' ? setImmediate : setTimeout)")(f);
 #elseif js
             // use polyfill or native node
-             untyped __js__("setImmediate")(f);
+            untyped __js__("setImmediate")(f);
 #else
             f();
 #end
