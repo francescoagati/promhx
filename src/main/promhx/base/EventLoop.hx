@@ -67,9 +67,14 @@ class EventLoop {
 
 #if flash
             haxe.Timer.delay(f,0);
+            
+#elseif (js && (noEmbedJs || useSetTimeout) && !nodejs)
+            // fallback to setTimeout
+            untyped __js__("(setTimeout)")(f);            
+            
 #elseif (js && (noEmbedJs || noEmbedSetImmediate) && !nodejs)
             // fallback to setTimeout
-            untyped __js__("(setTimeout)")(f);
+            untyped __js__("(typeof setImmediate === 'function' ? setImmediate : setTimeout)")(f);
 #elseif js
             // use polyfill or native node
             untyped __js__("setTimeout")(f);
