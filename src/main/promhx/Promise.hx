@@ -48,7 +48,7 @@ class Promise<T> extends AsyncBase<T>{
                 // on "f" that provides arity and types for the resolved promise values.
                 var ret = new promhx.Promise();
                 var arr : Array<promhx.Promise<Dynamic>> = $eargs;
-                var p = new Promise<Array<Dynamic>>();
+                var p = new promhx.Promise<Array<Dynamic>>();
                 promhx.base.AsyncBase.linkAll(arr, p);
                 p._update.push({
                     async : ret,
